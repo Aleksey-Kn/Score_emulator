@@ -59,7 +59,7 @@ public class DataBaseAssistant {
 
     public boolean add(Notebook data){
         try {
-            jdbcTemplate.update("INSERT INTO monitor(series_number, maker, price, counter, size)" +
+            jdbcTemplate.update("INSERT INTO notebook(series_number, maker, price, counter, size)" +
                             " VALUES(?, ?, ?, ?, ?)", data.getSeriesNumber(), data.getMaker(), data.getPrice(),
                     data.getCounter(), data.getSize());
             return true;
@@ -93,6 +93,82 @@ public class DataBaseAssistant {
                     (rs, rowNum) -> new Notebook(rs.getInt(1), rs.getInt(2),
                             rs.getString(3), rs.getInt(4), rs.getInt(5),
                             rs.getInt(6))).get(0);
+        } else return null;
+    }
+
+    public boolean set(int id, Desktop data){
+        try {
+            jdbcTemplate.update("UPDATE descktop SET series_number = ?, maker = ?, price = ?, counter = ?, form_factor = ?" +
+                            "WHERE id = " + id,
+                    data.getSeriesNumber(), data.getMaker(), data.getPrice(),
+                    data.getCounter(), data.getFormFactor());
+            return true;
+        } catch (Exception ignored){
+            return false;
+        }
+    }
+
+    public boolean set(int id, HardDisk data){
+        try {
+            jdbcTemplate.update("UPDATE hard SET series_number = ?, maker = ?, price = ?, counter = ?, volume = ?" +
+                            "WHERE id = " + id,
+                    data.getSeriesNumber(), data.getMaker(), data.getPrice(),
+                    data.getCounter(), data.getVolume());
+            return true;
+        } catch (Exception ignored){
+            return false;
+        }
+    }
+
+    public boolean set(int id, Monitor data){
+        try {
+            jdbcTemplate.update("UPDATE monitor SET series_number = ?, maker = ?, price = ?, counter = ?, diagonal = ?" +
+                            "WHERE id = " + id,
+                    data.getSeriesNumber(), data.getMaker(), data.getPrice(),
+                    data.getCounter(), data.getDiagonal());
+            return true;
+        } catch (Exception ignored){
+            return false;
+        }
+    }
+
+    public boolean set(int id, Notebook data){
+        try {
+            jdbcTemplate.update("UPDATE notebook SET series_number = ?, maker = ?, price = ?, counter = ?, size = ?" +
+                    "WHERE id = " + id,
+                    data.getSeriesNumber(), data.getMaker(), data.getPrice(),
+                    data.getCounter(), data.getSize());
+            return true;
+        } catch (Exception ignored){
+            return false;
+        }
+    }
+
+    public List<Data> getAll(Class clazz){
+        if (Desktop.class.equals(clazz)) {
+            return jdbcTemplate.query(
+                    "select * from decktop",
+                    (rs, rowNum) -> new Desktop(rs.getInt(1), rs.getInt(2),
+                            rs.getString(3), rs.getInt(4), rs.getInt(5),
+                            rs.getString(6)));
+        } else if(HardDisk.class.equals(clazz)){
+            return jdbcTemplate.query(
+                    "select * from hard",
+                    (rs, rowNum) -> new HardDisk(rs.getInt(1), rs.getInt(2),
+                            rs.getString(3), rs.getInt(4), rs.getInt(5),
+                            rs.getInt(6)));
+        } else if(Monitor.class.equals(clazz)){
+            return jdbcTemplate.query(
+                    "select * from monitor",
+                    (rs, rowNum) -> new Monitor(rs.getInt(1), rs.getInt(2),
+                            rs.getString(3), rs.getInt(4), rs.getInt(5),
+                            rs.getInt(6)));
+        } else if(Notebook.class.equals(clazz)){
+            return jdbcTemplate.query(
+                    "select * from notebook",
+                    (rs, rowNum) -> new Notebook(rs.getInt(1), rs.getInt(2),
+                            rs.getString(3), rs.getInt(4), rs.getInt(5),
+                            rs.getInt(6)));
         } else return null;
     }
 }
