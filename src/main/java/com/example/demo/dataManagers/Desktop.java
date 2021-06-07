@@ -1,6 +1,5 @@
 package com.example.demo.dataManagers;
 
-
 import org.springframework.stereotype.Component;
 
 @Component
