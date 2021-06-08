@@ -1,8 +1,5 @@
 package com.example.demo.dataManagers;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class Monitor extends Data{
     protected int diagonal;
 
@@ -11,8 +8,8 @@ public class Monitor extends Data{
         this.diagonal = diagonal;
     }
 
-    public void init(int seriesNumber, String maker, int price, int counter, int diagonal) {
-        super.init(seriesNumber, maker, price, counter);
+    public Monitor(int seriesNumber, String maker, int price, int counter, int diagonal) {
+        super(seriesNumber, maker, price, counter);
         this.diagonal = diagonal;
     }
 

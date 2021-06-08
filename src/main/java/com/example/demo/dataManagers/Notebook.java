@@ -1,8 +1,5 @@
 package com.example.demo.dataManagers;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class Notebook extends Data{
     protected int size;
 
@@ -11,8 +8,8 @@ public class Notebook extends Data{
         this.size = size;
     }
 
-    public void init(int seriesNumber, String maker, int price, int counter, int size) {
-        super.init(seriesNumber, maker, price, counter);
+    public Notebook(int seriesNumber, String maker, int price, int counter, int size) {
+        super(seriesNumber, maker, price, counter);
         this.size = size;
     }
 

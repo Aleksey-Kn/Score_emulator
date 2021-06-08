@@ -12,7 +12,8 @@ abstract public class Data {
         this.counter = counter;
     }
 
-    public void init(int seriesNumber, String maker, int price, int counter){
+    protected Data(int seriesNumber, String maker, int price, int counter){
+        id = 0;
         this.seriesNumber = seriesNumber;
         this.maker = maker;
         this.price = price;

@@ -1,8 +1,5 @@
 package com.example.demo.dataManagers;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class Desktop extends Data {
     protected String formFactor;
 
@@ -11,8 +8,8 @@ public class Desktop extends Data {
         this.formFactor = formFactor;
     }
 
-    public void init(int seriesNumber, String maker, int price, int counter, String formFactor) {
-        super.init(seriesNumber, maker, price, counter);
+    public Desktop(int seriesNumber, String maker, int price, int counter, String formFactor) {
+        super(seriesNumber, maker, price, counter);
         this.formFactor = formFactor;
     }
 

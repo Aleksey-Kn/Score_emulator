@@ -1,13 +1,11 @@
 package com.example.demo.controllers;
 
-import com.example.demo.Config;
 import com.example.demo.DataBaseAssistant;
 import com.example.demo.dataManagers.Desktop;
 import com.example.demo.dataManagers.HardDisk;
 import com.example.demo.dataManagers.Monitor;
 import com.example.demo.dataManagers.Notebook;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,7 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class PostController {
-    private final ApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
+    @Autowired
+    private DataBaseAssistant databaseAssistant;
 
     @PostMapping(path = "/uploadDesktop")
     public @ResponseBody String uploadDesktop(@RequestParam("seriesNumber") int seriesNumber,
@@ -23,9 +22,7 @@ public class PostController {
                                               @RequestParam("price") int price,
                                               @RequestParam("counter") int counter,
                                               @RequestParam("formFactor") String formFactor){
-        Desktop desktop = context.getBean(Desktop.class);
-        desktop.init(seriesNumber, maker, price, counter, formFactor);
-        if(context.getBean(DataBaseAssistant.class).add(desktop)){
+        if(databaseAssistant.add(new Desktop(seriesNumber, maker, price, counter, formFactor))){
             return "Successful";
         } else return "Error in upload";
     }
@@ -36,9 +33,7 @@ public class PostController {
                                                @RequestParam("price") int price,
                                                @RequestParam("counter") int counter,
                                                @RequestParam("size") int size){
-        Notebook notebook = context.getBean(Notebook.class);
-        notebook.init(seriesNumber, maker, price, counter, size);
-        if(context.getBean(DataBaseAssistant.class).add(notebook)){
+        if(databaseAssistant.add(new Notebook(seriesNumber, maker, price, counter, size))){
             return "Successful";
         } else return "Error in upload";
     }
@@ -49,9 +44,7 @@ public class PostController {
                                                @RequestParam("price") int price,
                                                @RequestParam("counter") int counter,
                                                @RequestParam("volume") int volume){
-        HardDisk hardDisk = context.getBean(HardDisk.class);
-        hardDisk.init(seriesNumber, maker, price, counter, volume);
-        if(context.getBean(DataBaseAssistant.class).add(hardDisk)){
+        if(databaseAssistant.add(new HardDisk(seriesNumber, maker, price, counter, volume))){
             return "Successful";
         } else return "Error in upload";
     }
@@ -62,9 +55,7 @@ public class PostController {
                                                @RequestParam("price") int price,
                                                @RequestParam("counter") int counter,
                                                @RequestParam("diagonal") int diagonal){
-        Monitor monitor = context.getBean(Monitor.class);
-        monitor.init(seriesNumber, maker, price, counter, diagonal);
-        if(context.getBean(DataBaseAssistant.class).add(monitor)){
+        if(databaseAssistant.add(new Monitor(seriesNumber, maker, price, counter, diagonal))){
             return "Successful";
         } else return "Error in upload";
     }

@@ -1,9 +1,5 @@
 package com.example.demo.dataManagers;
 
-
-import org.springframework.stereotype.Component;
-
-@Component
 public class HardDisk extends Data {
     protected int volume;
 
@@ -12,8 +8,8 @@ public class HardDisk extends Data {
         this.volume = volume;
     }
 
-    public void init(int seriesNumber, String maker, int price, int counter, int volume) {
-        super.init(seriesNumber, maker, price, counter);
+    public HardDisk(int seriesNumber, String maker, int price, int counter, int volume) {
+        super(seriesNumber, maker, price, counter);
         this.volume = volume;
     }
 
