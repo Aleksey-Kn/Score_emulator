@@ -67,7 +67,7 @@ public class DataBaseAssistant {
 
     public Data searchId(String clazz, int id){
         switch (clazz){
-            case "descktop":
+            case "desktop":
                 return jdbcTemplate.query(
                     "select * from descktop where id = ?", new Integer[]{id},
                     (rs, rowNum) -> new Desktop(rs.getInt(1), rs.getInt(2),
@@ -145,7 +145,7 @@ public class DataBaseAssistant {
 
     public List<Data> getAll(String clazz){
         switch (clazz){
-            case "descktop":
+            case "desktop":
                 return jdbcTemplate.query(
                     "select * from descktop",
                     (rs, rowNum) -> new Desktop(rs.getInt(1), rs.getInt(2),
