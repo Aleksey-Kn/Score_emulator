@@ -16,7 +16,8 @@ public class Desktop extends Data {
     @Override
     public String toString() {
         return "Desktop{" +
-                "seriesNumber=" + seriesNumber +
+                "id=" + id +
+                ", seriesNumber=" + seriesNumber +
                 ", price=" + price +
                 ", counter=" + counter +
                 ", maker='" + maker + '\'' +

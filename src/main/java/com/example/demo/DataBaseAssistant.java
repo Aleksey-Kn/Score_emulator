@@ -65,32 +65,34 @@ public class DataBaseAssistant {
         }
     }
 
-    public Data searchId(Class clazz, int id){
-        if (Desktop.class.equals(clazz)) {
-            return jdbcTemplate.query(
-                    "select * from decktop where id = ?", new Integer[]{id},
+    public Data searchId(String clazz, int id){
+        switch (clazz){
+            case "descktop":
+                return jdbcTemplate.query(
+                    "select * from descktop where id = ?", new Integer[]{id},
                     (rs, rowNum) -> new Desktop(rs.getInt(1), rs.getInt(2),
                             rs.getString(3), rs.getInt(4), rs.getInt(5),
                             rs.getString(6))).get(0);
-        } else if(HardDisk.class.equals(clazz)){
-            return jdbcTemplate.query(
+            case "hard":
+                return jdbcTemplate.query(
                     "select * from hard where id = ?", new Integer[]{id},
                     (rs, rowNum) -> new HardDisk(rs.getInt(1), rs.getInt(2),
                             rs.getString(3), rs.getInt(4), rs.getInt(5),
                             rs.getInt(6))).get(0);
-        } else if(Monitor.class.equals(clazz)){
-            return jdbcTemplate.query(
+            case "monitor":
+                return jdbcTemplate.query(
                     "select * from monitor where id = ?", new Integer[]{id},
                     (rs, rowNum) -> new Monitor(rs.getInt(1), rs.getInt(2),
                             rs.getString(3), rs.getInt(4), rs.getInt(5),
                             rs.getInt(6))).get(0);
-        } else if(Notebook.class.equals(clazz)){
-            return jdbcTemplate.query(
+            case "notebook":
+                return jdbcTemplate.query(
                     "select * from notebook where id = ?", new Integer[]{id},
                     (rs, rowNum) -> new Notebook(rs.getInt(1), rs.getInt(2),
                             rs.getString(3), rs.getInt(4), rs.getInt(5),
                             rs.getInt(6))).get(0);
-        } else return null;
+        }
+        return null;
     }
 
     public boolean set(int id, Desktop data){
@@ -141,31 +143,33 @@ public class DataBaseAssistant {
         }
     }
 
-    public List<Data> getAll(Class clazz){
-        if (Desktop.class.equals(clazz)) {
-            return jdbcTemplate.query(
-                    "select * from decktop",
+    public List<Data> getAll(String clazz){
+        switch (clazz){
+            case "descktop":
+                return jdbcTemplate.query(
+                    "select * from descktop",
                     (rs, rowNum) -> new Desktop(rs.getInt(1), rs.getInt(2),
                             rs.getString(3), rs.getInt(4), rs.getInt(5),
                             rs.getString(6)));
-        } else if(HardDisk.class.equals(clazz)){
-            return jdbcTemplate.query(
+            case "hard":
+                return jdbcTemplate.query(
                     "select * from hard",
                     (rs, rowNum) -> new HardDisk(rs.getInt(1), rs.getInt(2),
                             rs.getString(3), rs.getInt(4), rs.getInt(5),
                             rs.getInt(6)));
-        } else if(Monitor.class.equals(clazz)){
-            return jdbcTemplate.query(
+            case "monitor":
+                return jdbcTemplate.query(
                     "select * from monitor",
                     (rs, rowNum) -> new Monitor(rs.getInt(1), rs.getInt(2),
                             rs.getString(3), rs.getInt(4), rs.getInt(5),
                             rs.getInt(6)));
-        } else if(Notebook.class.equals(clazz)){
-            return jdbcTemplate.query(
+            case "notebook":
+                return jdbcTemplate.query(
                     "select * from notebook",
                     (rs, rowNum) -> new Notebook(rs.getInt(1), rs.getInt(2),
                             rs.getString(3), rs.getInt(4), rs.getInt(5),
                             rs.getInt(6)));
-        } else return null;
+        }
+        return null;
     }
 }

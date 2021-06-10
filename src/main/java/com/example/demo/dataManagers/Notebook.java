@@ -16,7 +16,8 @@ public class Notebook extends Data{
     @Override
     public String toString() {
         return "Notebook{" +
-                "seriesNumber=" + seriesNumber +
+                "id=" + id +
+                ", seriesNumber=" + seriesNumber +
                 ", price=" + price +
                 ", counter=" + counter +
                 ", maker='" + maker + '\'' +

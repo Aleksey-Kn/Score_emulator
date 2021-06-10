@@ -16,7 +16,8 @@ public class HardDisk extends Data {
     @Override
     public String toString() {
         return "HardDisk{" +
-                "seriesNumber=" + seriesNumber +
+                "id=" + id +
+                ", seriesNumber=" + seriesNumber +
                 ", price=" + price +
                 ", counter=" + counter +
                 ", maker='" + maker + '\'' +
